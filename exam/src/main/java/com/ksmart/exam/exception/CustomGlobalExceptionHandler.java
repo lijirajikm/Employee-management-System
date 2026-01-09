@@ -15,10 +15,16 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class CustomGlobalExceptionHandler {
     private final MessageSource messageSource;
 
-    @ExceptionHandler(IdNotFound.class)
+    @ExceptionHandler(EmpCodeNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ResponseBody
-    public ResponseEntity<Object> handleIdNotFoundException(IdNotFound ex) {
+    public ResponseEntity<Object> handleIdNotFoundException(EmpCodeNotFoundException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(EmpCodeExistExeption.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseBody
+    public ResponseEntity<Object> handleEmpCodeExistException(EmpCodeExistExeption ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 }
