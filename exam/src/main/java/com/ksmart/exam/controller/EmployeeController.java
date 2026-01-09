@@ -31,7 +31,7 @@ public class EmployeeController implements SecureSwaggerController{
 
 @PostMapping("/create")
 public ResponseEntity<EmployeeResponse> createEmployee(
-        @RequestBody EmployeeRequest request) {
+        @Valid @RequestBody EmployeeRequest request) {
 
     return new ResponseEntity<>(
             employeeService.createEmployee(request),
@@ -58,7 +58,7 @@ public ResponseEntity<Page<Employee>> getAllEmployees(
    
     @PutMapping("/{employeeCode}")
 public ResponseEntity<EmployeeResponse> updateEmployee(
-        @PathVariable String employeeCode,
+        @PathVariable String employeeCode, @Valid
         @RequestBody EmployeeRequest request) {
 
     EmployeeResponse updatedEmployee = employeeService.updateEmployeeByCode(employeeCode, request);
