@@ -24,7 +24,7 @@ public class EmployeeService {
     
         public EmployeeResponse createEmployee(EmployeeRequest request) {
         if (employeeRepository.findByEmployeeCode(request.getEmployeeCode()).isPresent()) {
-        throw new IdExistException(request.getEmployeeCode());
+        throw new EmpCodeExistExeption("Employee Code Existing");
     
     }
 
@@ -44,7 +44,7 @@ public class EmployeeService {
     public Employee getEmployeeByCode(String employeeCode) {
         return employeeRepository.findByEmployeeCode(employeeCode)
                 .orElseThrow(() ->
-                        new RuntimeException("Employee not found with code: " + employeeCode));
+                        new EmpCodeNotFoundException("Employee not found with code: " + employeeCode));
     }
 
    
@@ -59,7 +59,7 @@ public class EmployeeService {
 
    
     Employee employee = employeeRepository.findByEmployeeCode(employeeCode)
-            .orElseThrow(() -> new IdNotFound(employeeCode));
+            .orElseThrow(() -> new EmpCodeNotFoundException("Employee Code Not Found"));
 
     
     if (request.getName() != null) {
@@ -85,4 +85,6 @@ public class EmployeeService {
     return modelMapper.map(savedEmployee, EmployeeResponse.class);
 }
     }
+
+
 
