@@ -67,9 +67,9 @@ public ResponseEntity<EmployeeResponse> updateEmployee(
 
 
     @DeleteMapping("/{employeeCode}")
-    public ResponseEntity<Void> deleteEmployee(@PathVariable String employeeCode) {
-        employeeService.deleteEmployee(employeeCode);
-        return ResponseEntity.noContent().build();
-    }
+public ResponseEntity<String> deleteEmployee(@PathVariable String employeeCode) {
+    String message = employeeService.deleteEmployee(employeeCode);
+    return ResponseEntity.ok(message);
+}
  }
 
