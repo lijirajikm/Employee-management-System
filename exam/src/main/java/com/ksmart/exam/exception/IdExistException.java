@@ -1,7 +1,7 @@
 package com.ksmart.exam.exception;
 
-public class IdExistException extends RuntimeException {
-    public IdExistException(String message) {
+public class EmpCodeExistExeption extends RuntimeException {
+    public EmpCodeExistExeption(String message) {
         super(message);
     }
 }
